@@ -1,4 +1,6 @@
-﻿namespace Microsoft_Notepad
+﻿using System.Windows.Forms;
+
+namespace Microsoft_Notepad
 {
     partial class Notepad
     {
@@ -74,7 +76,6 @@
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutNotepadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gunaLinePanel2 = new Guna.UI.WinForms.GunaLinePanel();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.guna2VSeparator4 = new Guna.UI2.WinForms.Guna2VSeparator();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
@@ -87,6 +88,7 @@
             this.guna2VSeparator1 = new Guna.UI2.WinForms.Guna2VSeparator();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.gunaLinePanel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.gunaLinePanel2.SuspendLayout();
@@ -419,6 +421,7 @@
             this.zoomInToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Oemplus)));
             this.zoomInToolStripMenuItem.Size = new System.Drawing.Size(289, 26);
             this.zoomInToolStripMenuItem.Text = "Zoom &In";
+            this.zoomInToolStripMenuItem.Click += new System.EventHandler(this.zoomInToolStripMenuItem_Click);
             // 
             // zoomOutToolStripMenuItem
             // 
@@ -427,6 +430,7 @@
             this.zoomOutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.OemMinus)));
             this.zoomOutToolStripMenuItem.Size = new System.Drawing.Size(289, 26);
             this.zoomOutToolStripMenuItem.Text = "Zoom &Out";
+            this.zoomOutToolStripMenuItem.Click += new System.EventHandler(this.zoomOutToolStripMenuItem_Click);
             // 
             // restoreDefaultZoomToolStripMenuItem
             // 
@@ -435,6 +439,7 @@
             this.restoreDefaultZoomToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D0)));
             this.restoreDefaultZoomToolStripMenuItem.Size = new System.Drawing.Size(289, 26);
             this.restoreDefaultZoomToolStripMenuItem.Text = "&Restore Default Zoom";
+            this.restoreDefaultZoomToolStripMenuItem.Click += new System.EventHandler(this.restoreDefaultZoomToolStripMenuItem_Click);
             // 
             // statusBarToolStripMenuItem
             // 
@@ -444,6 +449,7 @@
             this.statusBarToolStripMenuItem.Name = "statusBarToolStripMenuItem";
             this.statusBarToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
             this.statusBarToolStripMenuItem.Text = "&Status Bar";
+            this.statusBarToolStripMenuItem.Click += new System.EventHandler(this.statusBarToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -502,18 +508,6 @@
             this.gunaLinePanel2.Padding = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this.gunaLinePanel2.Size = new System.Drawing.Size(800, 33);
             this.gunaLinePanel2.TabIndex = 5;
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.BackColor = System.Drawing.Color.White;
-            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox1.Location = new System.Drawing.Point(0, 33);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedBoth;
-            this.richTextBox1.Size = new System.Drawing.Size(800, 384);
-            this.richTextBox1.TabIndex = 6;
-            this.richTextBox1.Text = "";
             // 
             // guna2VSeparator4
             // 
@@ -627,6 +621,20 @@
             this.label1.Text = "UTF-8";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // richTextBox1
+            // 
+            this.richTextBox1.BackColor = System.Drawing.Color.White;
+            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBox1.Location = new System.Drawing.Point(0, 33);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedBoth;
+            this.richTextBox1.Size = new System.Drawing.Size(800, 384);
+            this.richTextBox1.TabIndex = 6;
+            this.richTextBox1.Text = "";
+            this.richTextBox1.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.richTextBox1_MouseWheel);
+            // 
             // Notepad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -636,8 +644,10 @@
             this.Controls.Add(this.gunaLinePanel2);
             this.Controls.Add(this.gunaLinePanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Name = "Notepad";
             this.Text = "Notepad";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Notepad_KeyDown);
             this.gunaLinePanel1.ResumeLayout(false);
             this.gunaLinePanel1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
@@ -698,7 +708,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripMenuItem aboutNotepadToolStripMenuItem;
         private Guna.UI.WinForms.GunaLinePanel gunaLinePanel2;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        public  System.Windows.Forms.RichTextBox richTextBox1;
         private Guna.UI2.WinForms.Guna2VSeparator guna2VSeparator4;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label4;
