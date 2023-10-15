@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace Microsoft_Notepad
 {
-    public partial class Form1 : Form
+    public partial class aboutForm : Form
     {
-        public Form1()
+        public aboutForm()
         {
             InitializeComponent();
         }
-    }
+
+		private void okButton_Click(object sender, EventArgs e)
+		{
+            Close();
+		}
+	}
 }
