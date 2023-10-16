@@ -71,11 +71,11 @@
     <Compile Include="EditFeature\GoToForm.Designer.cs">
       <DependentUpon>GoToForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="aboutForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="aboutForm.Designer.cs">
+      <DependentUpon>aboutForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Notepad.cs">
       <SubType>Form</SubType>
@@ -96,8 +96,17 @@
     <EmbeddedResource Include="EditFeature\FindForm.resx">
       <DependentUpon>FindForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditFeature\GoToForm.resx">
-      <DependentUpon>GoToForm.cs</DependentUpon>
+	<EmbeddedResource Include="EditFeature\GoToForm.resx">
+		<DependentUpon>GoToForm.cs</DependentUpon>
+	</EmbeddedResource>
+    <Compile Include="saveConfirm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="saveConfirm.Designer.cs">
+      <DependentUpon>saveConfirm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="aboutForm.resx">
+      <DependentUpon>aboutForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Notepad.resx">
       <DependentUpon>Notepad.cs</DependentUpon>
@@ -110,9 +119,13 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="EditFeature\ReplaceForm.resx">
-      <DependentUpon>ReplaceForm.cs</DependentUpon>
+	    <DependentUpon>ReplaceForm.cs</DependentUpon>
+    </EmbeddedResource>	
+    <EmbeddedResource Include="saveConfirm.resx">
+      <DependentUpon>saveConfirm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -126,6 +139,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\icons8-windows-10-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
