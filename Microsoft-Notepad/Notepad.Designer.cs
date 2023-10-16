@@ -1,4 +1,6 @@
-﻿namespace Microsoft_Notepad
+﻿using System.Windows.Forms;
+
+namespace Microsoft_Notepad
 {
     partial class Notepad
     {
@@ -28,99 +30,98 @@
         /// </summary>
         private void InitializeComponent()
         {
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Notepad));
-			this.gunaLinePanel1 = new Guna.UI.WinForms.GunaLinePanel();
-			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.newWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-			this.pageSetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-			this.cutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-			this.searchWithBingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.findToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.findNextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.findPreviousToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.replaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.goToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-			this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.timeDateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.formatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.wordWrapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.fontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.zoomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.zoomInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.zoomOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.restoreDefaultZoomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.statusBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.viewHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.sendFeedbackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-			this.aboutNotepadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.gunaLinePanel2 = new Guna.UI.WinForms.GunaLinePanel();
-			this.guna2VSeparator4 = new Guna.UI2.WinForms.Guna2VSeparator();
-			this.panel5 = new System.Windows.Forms.Panel();
-			this.label4 = new System.Windows.Forms.Label();
-			this.guna2VSeparator3 = new Guna.UI2.WinForms.Guna2VSeparator();
-			this.panel4 = new System.Windows.Forms.Panel();
-			this.label3 = new System.Windows.Forms.Label();
-			this.guna2VSeparator2 = new Guna.UI2.WinForms.Guna2VSeparator();
-			this.panel3 = new System.Windows.Forms.Panel();
-			this.label2 = new System.Windows.Forms.Label();
-			this.guna2VSeparator1 = new Guna.UI2.WinForms.Guna2VSeparator();
-			this.panel2 = new System.Windows.Forms.Panel();
-			this.label1 = new System.Windows.Forms.Label();
-			this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-			this.gunaLinePanel1.SuspendLayout();
-			this.menuStrip1.SuspendLayout();
-			this.gunaLinePanel2.SuspendLayout();
-			this.panel5.SuspendLayout();
-			this.panel4.SuspendLayout();
-			this.panel3.SuspendLayout();
-			this.panel2.SuspendLayout();
-			this.SuspendLayout();
-			// 
-			// gunaLinePanel1
-			// 
-			this.gunaLinePanel1.Controls.Add(this.menuStrip1);
-			this.gunaLinePanel1.Dock = System.Windows.Forms.DockStyle.Top;
-			this.gunaLinePanel1.LineBottom = 2;
-			this.gunaLinePanel1.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(215)))), ((int)(((byte)(215)))));
-			this.gunaLinePanel1.LineStyle = System.Windows.Forms.BorderStyle.None;
-			this.gunaLinePanel1.Location = new System.Drawing.Point(0, 0);
-			this.gunaLinePanel1.Margin = new System.Windows.Forms.Padding(2);
-			this.gunaLinePanel1.Name = "gunaLinePanel1";
-			this.gunaLinePanel1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
-			this.gunaLinePanel1.Size = new System.Drawing.Size(600, 27);
-			this.gunaLinePanel1.TabIndex = 3;
-			// 
-			// menuStrip1
-			// 
-			this.menuStrip1.BackColor = System.Drawing.Color.White;
-			this.menuStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.editToolStripMenuItem,
-            this.formatToolStripMenuItem,
-            this.viewToolStripMenuItem,
-            this.helpToolStripMenuItem});
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Notepad));
+            this.gunaLinePanel1 = new Guna.UI.WinForms.GunaLinePanel();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.pageSetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.cutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.searchWithBingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.findToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.findNextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.findPreviousToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.replaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.goToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.timeDateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.formatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.wordWrapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.zoomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.zoomInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.zoomOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.restoreDefaultZoomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sendFeedbackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.aboutNotepadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gunaLinePanel2 = new Guna.UI.WinForms.GunaLinePanel();
+            this.guna2VSeparator4 = new Guna.UI2.WinForms.Guna2VSeparator();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.guna2VSeparator3 = new Guna.UI2.WinForms.Guna2VSeparator();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.guna2VSeparator2 = new Guna.UI2.WinForms.Guna2VSeparator();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.guna2VSeparator1 = new Guna.UI2.WinForms.Guna2VSeparator();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.gunaLinePanel1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
+            this.gunaLinePanel2.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // gunaLinePanel1
+            // 
+            this.gunaLinePanel1.Controls.Add(this.menuStrip1);
+            this.gunaLinePanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.gunaLinePanel1.LineBottom = 2;
+            this.gunaLinePanel1.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(215)))), ((int)(((byte)(215)))));
+            this.gunaLinePanel1.LineStyle = System.Windows.Forms.BorderStyle.None;
+            this.gunaLinePanel1.Location = new System.Drawing.Point(0, 0);
+            this.gunaLinePanel1.Name = "gunaLinePanel1";
+            this.gunaLinePanel1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 3);
+            this.gunaLinePanel1.Size = new System.Drawing.Size(800, 33);
+            this.gunaLinePanel1.TabIndex = 3;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.BackColor = System.Drawing.Color.White;
+            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+              this.fileToolStripMenuItem,
+              this.editToolStripMenuItem,
+              this.formatToolStripMenuItem,
+              this.viewToolStripMenuItem,
+              this.helpToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
 			this.menuStrip1.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
@@ -415,267 +416,254 @@
             this.zoomInToolStripMenuItem,
             this.zoomOutToolStripMenuItem,
             this.restoreDefaultZoomToolStripMenuItem});
-			this.zoomToolStripMenuItem.Name = "zoomToolStripMenuItem";
-			this.zoomToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
-			this.zoomToolStripMenuItem.Text = "&Zoom";
-			// 
-			// zoomInToolStripMenuItem
-			// 
-			this.zoomInToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-			this.zoomInToolStripMenuItem.Name = "zoomInToolStripMenuItem";
-			this.zoomInToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Oemplus)));
-			this.zoomInToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
-			this.zoomInToolStripMenuItem.Text = "Zoom &In";
-			// 
-			// zoomOutToolStripMenuItem
-			// 
-			this.zoomOutToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-			this.zoomOutToolStripMenuItem.Name = "zoomOutToolStripMenuItem";
-			this.zoomOutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.OemMinus)));
-			this.zoomOutToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
-			this.zoomOutToolStripMenuItem.Text = "Zoom &Out";
-			// 
-			// restoreDefaultZoomToolStripMenuItem
-			// 
-			this.restoreDefaultZoomToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-			this.restoreDefaultZoomToolStripMenuItem.Name = "restoreDefaultZoomToolStripMenuItem";
-			this.restoreDefaultZoomToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D0)));
-			this.restoreDefaultZoomToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
-			this.restoreDefaultZoomToolStripMenuItem.Text = "&Restore Default Zoom";
-			// 
-			// statusBarToolStripMenuItem
-			// 
-			this.statusBarToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-			this.statusBarToolStripMenuItem.Checked = true;
-			this.statusBarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.statusBarToolStripMenuItem.Name = "statusBarToolStripMenuItem";
-			this.statusBarToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
-			this.statusBarToolStripMenuItem.Text = "&Status Bar";
-			// 
-			// helpToolStripMenuItem
-			// 
-			this.helpToolStripMenuItem.BackColor = System.Drawing.Color.White;
-			this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.zoomToolStripMenuItem.Name = "zoomToolStripMenuItem";
+            this.zoomToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
+            this.zoomToolStripMenuItem.Text = "&Zoom";
+            // 
+            // zoomInToolStripMenuItem
+            // 
+            this.zoomInToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.zoomInToolStripMenuItem.Name = "zoomInToolStripMenuItem";
+            this.zoomInToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Oemplus)));
+            this.zoomInToolStripMenuItem.Size = new System.Drawing.Size(289, 26);
+            this.zoomInToolStripMenuItem.Text = "Zoom &In";
+            this.zoomInToolStripMenuItem.Click += new System.EventHandler(this.zoomInToolStripMenuItem_Click);
+            // 
+            // zoomOutToolStripMenuItem
+            // 
+            this.zoomOutToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.zoomOutToolStripMenuItem.Name = "zoomOutToolStripMenuItem";
+            this.zoomOutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.OemMinus)));
+            this.zoomOutToolStripMenuItem.Size = new System.Drawing.Size(289, 26);
+            this.zoomOutToolStripMenuItem.Text = "Zoom &Out";
+            this.zoomOutToolStripMenuItem.Click += new System.EventHandler(this.zoomOutToolStripMenuItem_Click);
+            // 
+            // restoreDefaultZoomToolStripMenuItem
+            // 
+            this.restoreDefaultZoomToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.restoreDefaultZoomToolStripMenuItem.Name = "restoreDefaultZoomToolStripMenuItem";
+            this.restoreDefaultZoomToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D0)));
+            this.restoreDefaultZoomToolStripMenuItem.Size = new System.Drawing.Size(289, 26);
+            this.restoreDefaultZoomToolStripMenuItem.Text = "&Restore Default Zoom";
+            this.restoreDefaultZoomToolStripMenuItem.Click += new System.EventHandler(this.restoreDefaultZoomToolStripMenuItem_Click);
+            // 
+            // statusBarToolStripMenuItem
+            // 
+            this.statusBarToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.statusBarToolStripMenuItem.Checked = true;
+            this.statusBarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.statusBarToolStripMenuItem.Name = "statusBarToolStripMenuItem";
+            this.statusBarToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
+            this.statusBarToolStripMenuItem.Text = "&Status Bar";
+            this.statusBarToolStripMenuItem.Click += new System.EventHandler(this.statusBarToolStripMenuItem_Click);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.BackColor = System.Drawing.Color.White;
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.viewHelpToolStripMenuItem,
             this.sendFeedbackToolStripMenuItem,
             this.toolStripSeparator6,
             this.aboutNotepadToolStripMenuItem});
-			this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-			this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
-			this.helpToolStripMenuItem.Text = "&Help";
-			// 
-			// viewHelpToolStripMenuItem
-			// 
-			this.viewHelpToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-			this.viewHelpToolStripMenuItem.Name = "viewHelpToolStripMenuItem";
-			this.viewHelpToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.viewHelpToolStripMenuItem.Text = "View &Help";
-			this.viewHelpToolStripMenuItem.Click += new System.EventHandler(this.viewHelpToolStripMenuItem_Click);
-			// 
-			// sendFeedbackToolStripMenuItem
-			// 
-			this.sendFeedbackToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-			this.sendFeedbackToolStripMenuItem.Name = "sendFeedbackToolStripMenuItem";
-			this.sendFeedbackToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.sendFeedbackToolStripMenuItem.Text = "Send &Feedback";
-			this.sendFeedbackToolStripMenuItem.Click += new System.EventHandler(this.sendFeedbackToolStripMenuItem_Click);
-			// 
-			// toolStripSeparator6
-			// 
-			this.toolStripSeparator6.Name = "toolStripSeparator6";
-			this.toolStripSeparator6.Size = new System.Drawing.Size(177, 6);
-			// 
-			// aboutNotepadToolStripMenuItem
-			// 
-			this.aboutNotepadToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-			this.aboutNotepadToolStripMenuItem.Name = "aboutNotepadToolStripMenuItem";
-			this.aboutNotepadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.aboutNotepadToolStripMenuItem.Text = "&About Notepad";
-			this.aboutNotepadToolStripMenuItem.Click += new System.EventHandler(this.aboutNotepadToolStripMenuItem_Click);
-			// 
-			// gunaLinePanel2
-			// 
-			this.gunaLinePanel2.Controls.Add(this.guna2VSeparator4);
-			this.gunaLinePanel2.Controls.Add(this.panel5);
-			this.gunaLinePanel2.Controls.Add(this.guna2VSeparator3);
-			this.gunaLinePanel2.Controls.Add(this.panel4);
-			this.gunaLinePanel2.Controls.Add(this.guna2VSeparator2);
-			this.gunaLinePanel2.Controls.Add(this.panel3);
-			this.gunaLinePanel2.Controls.Add(this.guna2VSeparator1);
-			this.gunaLinePanel2.Controls.Add(this.panel2);
-			this.gunaLinePanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.gunaLinePanel2.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(215)))), ((int)(((byte)(215)))));
-			this.gunaLinePanel2.LineStyle = System.Windows.Forms.BorderStyle.None;
-			this.gunaLinePanel2.LineTop = 1;
-			this.gunaLinePanel2.Location = new System.Drawing.Point(0, 339);
-			this.gunaLinePanel2.Margin = new System.Windows.Forms.Padding(2);
-			this.gunaLinePanel2.Name = "gunaLinePanel2";
-			this.gunaLinePanel2.Padding = new System.Windows.Forms.Padding(0, 1, 0, 1);
-			this.gunaLinePanel2.Size = new System.Drawing.Size(600, 27);
-			this.gunaLinePanel2.TabIndex = 5;
-			// 
-			// guna2VSeparator4
-			// 
-			this.guna2VSeparator4.Dock = System.Windows.Forms.DockStyle.Right;
-			this.guna2VSeparator4.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(215)))), ((int)(((byte)(215)))));
-			this.guna2VSeparator4.Location = new System.Drawing.Point(220, 1);
-			this.guna2VSeparator4.Margin = new System.Windows.Forms.Padding(2);
-			this.guna2VSeparator4.Name = "guna2VSeparator4";
-			this.guna2VSeparator4.Size = new System.Drawing.Size(8, 25);
-			this.guna2VSeparator4.TabIndex = 18;
-			// 
-			// panel5
-			// 
-			this.panel5.Controls.Add(this.label4);
-			this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
-			this.panel5.Location = new System.Drawing.Point(228, 1);
-			this.panel5.Margin = new System.Windows.Forms.Padding(2);
-			this.panel5.Name = "panel5";
-			this.panel5.Size = new System.Drawing.Size(112, 25);
-			this.panel5.TabIndex = 17;
-			// 
-			// label4
-			// 
-			this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.label4.Location = new System.Drawing.Point(0, 0);
-			this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(112, 25);
-			this.label4.TabIndex = 0;
-			this.label4.Text = "Ln 1, Col 1";
-			this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// guna2VSeparator3
-			// 
-			this.guna2VSeparator3.Dock = System.Windows.Forms.DockStyle.Right;
-			this.guna2VSeparator3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(215)))), ((int)(((byte)(215)))));
-			this.guna2VSeparator3.Location = new System.Drawing.Point(340, 1);
-			this.guna2VSeparator3.Margin = new System.Windows.Forms.Padding(2);
-			this.guna2VSeparator3.Name = "guna2VSeparator3";
-			this.guna2VSeparator3.Size = new System.Drawing.Size(8, 25);
-			this.guna2VSeparator3.TabIndex = 16;
-			// 
-			// panel4
-			// 
-			this.panel4.Controls.Add(this.label3);
-			this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
-			this.panel4.Location = new System.Drawing.Point(348, 1);
-			this.panel4.Margin = new System.Windows.Forms.Padding(2);
-			this.panel4.Name = "panel4";
-			this.panel4.Size = new System.Drawing.Size(37, 25);
-			this.panel4.TabIndex = 15;
-			// 
-			// label3
-			// 
-			this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.label3.Location = new System.Drawing.Point(0, 0);
-			this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(37, 25);
-			this.label3.TabIndex = 0;
-			this.label3.Text = "100%";
-			this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// guna2VSeparator2
-			// 
-			this.guna2VSeparator2.Dock = System.Windows.Forms.DockStyle.Right;
-			this.guna2VSeparator2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(215)))), ((int)(((byte)(215)))));
-			this.guna2VSeparator2.Location = new System.Drawing.Point(385, 1);
-			this.guna2VSeparator2.Margin = new System.Windows.Forms.Padding(2);
-			this.guna2VSeparator2.Name = "guna2VSeparator2";
-			this.guna2VSeparator2.Size = new System.Drawing.Size(8, 25);
-			this.guna2VSeparator2.TabIndex = 14;
-			// 
-			// panel3
-			// 
-			this.panel3.Controls.Add(this.label2);
-			this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-			this.panel3.Location = new System.Drawing.Point(393, 1);
-			this.panel3.Margin = new System.Windows.Forms.Padding(2);
-			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(92, 25);
-			this.panel3.TabIndex = 13;
-			// 
-			// label2
-			// 
-			this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.label2.Location = new System.Drawing.Point(0, 0);
-			this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(92, 25);
-			this.label2.TabIndex = 0;
-			this.label2.Text = "Windows (CRLF)";
-			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// guna2VSeparator1
-			// 
-			this.guna2VSeparator1.Dock = System.Windows.Forms.DockStyle.Right;
-			this.guna2VSeparator1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(215)))), ((int)(((byte)(215)))));
-			this.guna2VSeparator1.Location = new System.Drawing.Point(485, 1);
-			this.guna2VSeparator1.Margin = new System.Windows.Forms.Padding(2);
-			this.guna2VSeparator1.Name = "guna2VSeparator1";
-			this.guna2VSeparator1.Size = new System.Drawing.Size(8, 25);
-			this.guna2VSeparator1.TabIndex = 12;
-			// 
-			// panel2
-			// 
-			this.panel2.Controls.Add(this.label1);
-			this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-			this.panel2.Location = new System.Drawing.Point(493, 1);
-			this.panel2.Margin = new System.Windows.Forms.Padding(2);
-			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(107, 25);
-			this.panel2.TabIndex = 11;
-			// 
-			// label1
-			// 
-			this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.label1.Location = new System.Drawing.Point(0, 0);
-			this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(107, 25);
-			this.label1.TabIndex = 0;
-			this.label1.Text = "UTF-8";
-			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// richTextBox1
-			// 
-			this.richTextBox1.BackColor = System.Drawing.Color.White;
-			this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.richTextBox1.Location = new System.Drawing.Point(0, 27);
-			this.richTextBox1.Margin = new System.Windows.Forms.Padding(2);
-			this.richTextBox1.Name = "richTextBox1";
-			this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedBoth;
-			this.richTextBox1.Size = new System.Drawing.Size(600, 312);
-			this.richTextBox1.TabIndex = 6;
-			this.richTextBox1.Text = "";
-			this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
-			// 
-			// Notepad
-			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(600, 366);
-			this.Controls.Add(this.richTextBox1);
-			this.Controls.Add(this.gunaLinePanel2);
-			this.Controls.Add(this.gunaLinePanel1);
-			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-			this.Margin = new System.Windows.Forms.Padding(2);
-			this.Name = "Notepad";
-			this.Text = "Untitled - Notepad";
-			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Notepad_FormClosing);
-			this.gunaLinePanel1.ResumeLayout(false);
-			this.gunaLinePanel1.PerformLayout();
-			this.menuStrip1.ResumeLayout(false);
-			this.menuStrip1.PerformLayout();
-			this.gunaLinePanel2.ResumeLayout(false);
-			this.panel5.ResumeLayout(false);
-			this.panel4.ResumeLayout(false);
-			this.panel3.ResumeLayout(false);
-			this.panel2.ResumeLayout(false);
-			this.ResumeLayout(false);
-
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(55, 26);
+            this.helpToolStripMenuItem.Text = "&Help";
+            // 
+            // viewHelpToolStripMenuItem
+            // 
+            this.viewHelpToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.viewHelpToolStripMenuItem.Name = "viewHelpToolStripMenuItem";
+            this.viewHelpToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.viewHelpToolStripMenuItem.Text = "View &Help";
+            // 
+            // sendFeedbackToolStripMenuItem
+            // 
+            this.sendFeedbackToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.sendFeedbackToolStripMenuItem.Name = "sendFeedbackToolStripMenuItem";
+            this.sendFeedbackToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.sendFeedbackToolStripMenuItem.Text = "Send &Feedback";
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(221, 6);
+            // 
+            // aboutNotepadToolStripMenuItem
+            // 
+            this.aboutNotepadToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.aboutNotepadToolStripMenuItem.Name = "aboutNotepadToolStripMenuItem";
+            this.aboutNotepadToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.aboutNotepadToolStripMenuItem.Text = "&About Notepad";
+            // 
+            // gunaLinePanel2
+            // 
+            this.gunaLinePanel2.Controls.Add(this.guna2VSeparator4);
+            this.gunaLinePanel2.Controls.Add(this.panel5);
+            this.gunaLinePanel2.Controls.Add(this.guna2VSeparator3);
+            this.gunaLinePanel2.Controls.Add(this.panel4);
+            this.gunaLinePanel2.Controls.Add(this.guna2VSeparator2);
+            this.gunaLinePanel2.Controls.Add(this.panel3);
+            this.gunaLinePanel2.Controls.Add(this.guna2VSeparator1);
+            this.gunaLinePanel2.Controls.Add(this.panel2);
+            this.gunaLinePanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.gunaLinePanel2.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(215)))), ((int)(((byte)(215)))));
+            this.gunaLinePanel2.LineStyle = System.Windows.Forms.BorderStyle.None;
+            this.gunaLinePanel2.LineTop = 1;
+            this.gunaLinePanel2.Location = new System.Drawing.Point(0, 417);
+            this.gunaLinePanel2.Name = "gunaLinePanel2";
+            this.gunaLinePanel2.Padding = new System.Windows.Forms.Padding(0, 1, 0, 1);
+            this.gunaLinePanel2.Size = new System.Drawing.Size(800, 33);
+            this.gunaLinePanel2.TabIndex = 5;
+            // 
+            // guna2VSeparator4
+            // 
+            this.guna2VSeparator4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.guna2VSeparator4.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(215)))), ((int)(((byte)(215)))));
+            this.guna2VSeparator4.Location = new System.Drawing.Point(296, 1);
+            this.guna2VSeparator4.Name = "guna2VSeparator4";
+            this.guna2VSeparator4.Size = new System.Drawing.Size(10, 31);
+            this.guna2VSeparator4.TabIndex = 18;
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.label4);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel5.Location = new System.Drawing.Point(306, 1);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(149, 31);
+            this.panel5.TabIndex = 17;
+            // 
+            // label4
+            // 
+            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label4.Location = new System.Drawing.Point(0, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(149, 31);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Ln 1, Col 1";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // guna2VSeparator3
+            // 
+            this.guna2VSeparator3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.guna2VSeparator3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(215)))), ((int)(((byte)(215)))));
+            this.guna2VSeparator3.Location = new System.Drawing.Point(455, 1);
+            this.guna2VSeparator3.Name = "guna2VSeparator3";
+            this.guna2VSeparator3.Size = new System.Drawing.Size(10, 31);
+            this.guna2VSeparator3.TabIndex = 16;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.label3);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel4.Location = new System.Drawing.Point(465, 1);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(49, 31);
+            this.panel4.TabIndex = 15;
+            // 
+            // label3
+            // 
+            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label3.Location = new System.Drawing.Point(0, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(49, 31);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "100%";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // guna2VSeparator2
+            // 
+            this.guna2VSeparator2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.guna2VSeparator2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(215)))), ((int)(((byte)(215)))));
+            this.guna2VSeparator2.Location = new System.Drawing.Point(514, 1);
+            this.guna2VSeparator2.Name = "guna2VSeparator2";
+            this.guna2VSeparator2.Size = new System.Drawing.Size(10, 31);
+            this.guna2VSeparator2.TabIndex = 14;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.label2);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel3.Location = new System.Drawing.Point(524, 1);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(123, 31);
+            this.panel3.TabIndex = 13;
+            // 
+            // label2
+            // 
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.Location = new System.Drawing.Point(0, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(123, 31);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Windows (CRLF)";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // guna2VSeparator1
+            // 
+            this.guna2VSeparator1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.guna2VSeparator1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(215)))), ((int)(((byte)(215)))));
+            this.guna2VSeparator1.Location = new System.Drawing.Point(647, 1);
+            this.guna2VSeparator1.Name = "guna2VSeparator1";
+            this.guna2VSeparator1.Size = new System.Drawing.Size(10, 31);
+            this.guna2VSeparator1.TabIndex = 12;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel2.Location = new System.Drawing.Point(657, 1);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(143, 31);
+            this.panel2.TabIndex = 11;
+            // 
+            // label1
+            // 
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(143, 31);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "UTF-8";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.BackColor = System.Drawing.Color.White;
+            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBox1.Location = new System.Drawing.Point(0, 33);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedBoth;
+            this.richTextBox1.Size = new System.Drawing.Size(800, 384);
+            this.richTextBox1.TabIndex = 6;
+            this.richTextBox1.Text = "";
+            this.richTextBox1.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.richTextBox1_MouseWheel);
+            // 
+            // Notepad
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.gunaLinePanel2);
+            this.Controls.Add(this.gunaLinePanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
+            this.Name = "Notepad";
+            this.Text = "Notepad";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Notepad_KeyDown);
+            this.gunaLinePanel1.ResumeLayout(false);
+            this.gunaLinePanel1.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
+            this.gunaLinePanel2.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.ResumeLayout(false);
         }
 
         #endregion
@@ -725,7 +713,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripMenuItem aboutNotepadToolStripMenuItem;
         private Guna.UI.WinForms.GunaLinePanel gunaLinePanel2;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        public  System.Windows.Forms.RichTextBox richTextBox1;
         private Guna.UI2.WinForms.Guna2VSeparator guna2VSeparator4;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label4;
