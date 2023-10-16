@@ -1,4 +1,6 @@
 using Microsoft.VisualBasic.ApplicationServices;
+using Microsoft.VisualBasic;
+using Microsoft_Notepad.EditFeature;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,14 +18,39 @@ namespace Microsoft_Notepad
 {
 	public partial class Notepad : Form
 	{
+		private static Notepad instance;
+		public static Notepad Instance
+		{
+			get
+			{
+				if (instance == null)
+				{
+					instance = new Notepad();
+				}
+				return instance;
+			}
+			set
+			{
+				instance = value;
+			}
+		}
 		private string openedFilePath = null;
 		private string filename = "Untitled.txt";
 		private bool isFileSaved = true;
-
+		private UndoOperations undoOperations;
+		private Timer timer;
+		private FindForm findForm;
+		private ReplaceForm replaceForm;
 		public Notepad()
 		{
 			InitializeComponent();
 			this.Text = filename + " - " + this.Text;
+			instance = this;
+			undoOperations = new UndoOperations();
+			timer = new Timer();
+			timer.Tick += timer_Tick;
+			timer.Interval = 500;
+			richTextBox1.HideSelection = false;
 		}
 
 		private void Notepad_KeyDown(object sender, KeyEventArgs e)
@@ -363,13 +390,25 @@ namespace Microsoft_Notepad
 				Close();
 			}
 		}
-
+		private void timer_Tick(object sender, EventArgs args)
+		{
+			timer.Stop();
+			undoOperations.Add_Undo(richTextBox1.Text);
+		}
 		private void richTextBox1_TextChanged(object sender, EventArgs e)
 		{
 			isFileSaved = false;
 			UpdateView();
 			saveToolStripMenuItem.Enabled = true;
 			saveAsToolStripMenuItem.Enabled = true;
+			if (undoOperations.TxtAreaTextChangeRequired)
+			{
+				timer.Start();
+			}
+			else
+			{
+				undoOperations.TxtAreaTextChangeRequired = false;
+			}
 		}
 
 		private void Notepad_FormClosing(object sender, FormClosingEventArgs e)
@@ -457,5 +496,155 @@ namespace Microsoft_Notepad
 		{
 			this.Text = !isFileSaved ? "*" + filename + " - Notepad" : filename + " - Notepad";
 		}
+
+		//
+		// Edit
+		//
+		private void editToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			//
+			searchWithBingToolStripMenuItem.Enabled = richTextBox1.SelectedText.Length > 0;
+			cutToolStripMenuItem.Enabled = richTextBox1.SelectedText.Length > 0 ? true : false;
+			copyToolStripMenuItem.Enabled = richTextBox1.SelectedText.Length > 0 ? true : false;
+			pasteToolStripMenuItem.Enabled = Clipboard.GetDataObject().GetDataPresent(DataFormats.Text);
+			deleteToolStripMenuItem.Enabled = richTextBox1.SelectedText.Length > 0 ? true : false;
+			undoToolStripMenuItem.Enabled = undoOperations.CanUndo() ? true : false;
+
+			//
+			this.findToolStripMenuItem.Enabled = richTextBox1.Text.Length > 0 ? true : false;
+			this.findNextToolStripMenuItem.Enabled = richTextBox1.Text.Length > 0 ? true : false;
+			this.findPreviousToolStripMenuItem.Enabled = richTextBox1.Text.Length > 0 ? true : false;
+
+			//
+			goToToolStripMenuItem.Enabled = wordWrapToolStripMenuItem.CheckState == CheckState.Unchecked;
+		}
+
+		private void editToolStripMenuItem_MouseEnter(object sender, EventArgs e)
+		{
+			editToolStripMenuItem_Click(sender, e);
+		}
+
+		private void cutToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			richTextBox1.Cut();
+			pasteToolStripMenuItem.Enabled = true;
+		}
+
+		private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			richTextBox1.Copy();
+			copyToolStripMenuItem.Enabled = true;
+		}
+
+		private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (Clipboard.GetDataObject().GetDataPresent(DataFormats.Text))
+			{
+				richTextBox1.Paste();
+			}
+
+		}
+
+		private void selectAllToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			richTextBox1.SelectAll();
+		}
+
+		private void timeDateToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			richTextBox1.Text = richTextBox1.Text.Insert(richTextBox1.SelectionStart, DateTime.Now.ToString());
+		}
+
+		private void goToToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			using (GoToForm form = new GoToForm())
+			{
+				form.ShowDialog();
+			}
+		}
+
+		private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			richTextBox1.Text = richTextBox1.Text.Remove(richTextBox1.SelectionStart, richTextBox1.SelectionLength);
+		}
+
+		private void undoToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			richTextBox1.Text = undoOperations.UndoClicked();
+		}
+
+		private void findToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (findForm == null)
+			{
+				findForm = new FindForm();
+			}
+
+			if (!Microsoft_Notepad.FindForm.IsShowed)
+			{
+				findForm.Show();
+			}
+		}
+
+		private void findNextToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (findForm == null)
+			{
+				findForm = new FindForm();
+			}
+			if (!Microsoft_Notepad.FindForm.IsShowed && findForm.qry.SearchString.Length == 0)
+			{
+				findForm.Show();
+			}
+			else
+			{
+				findForm.handleFindEvent(mode: "DOWN");
+
+			}
+
+
+		}
+
+		private void findPreviousToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (findForm == null)
+			{
+				findForm = new FindForm();
+			}
+			if (!Microsoft_Notepad.FindForm.IsShowed && findForm.qry.SearchString.Length == 0)
+			{
+				findForm.Show();
+			}
+			else
+			{
+				findForm.handleFindEvent(mode: "UP");
+			}
+		}
+
+		private void searchWithBingToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				string query = "https://www.bing.com/search?q=" + Uri.EscapeDataString(this.richTextBox1.SelectedText);
+				System.Diagnostics.Process.Start(query);
+			}
+			catch
+			{
+
+			}
+		}
+
+		private void replaceToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (replaceForm == null)
+			{
+				replaceForm = new ReplaceForm();
+			}
+
+			if (!Microsoft_Notepad.ReplaceForm.IsShowed)
+			{
+				replaceForm.Show();
+			}
+		}
 	}
-}
+}		
