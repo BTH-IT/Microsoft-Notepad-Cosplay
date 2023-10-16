@@ -62,11 +62,11 @@
 			// 
 			// filePath
 			// 
-			this.filePath.AutoSize = true;
+			this.filePath.AutoEllipsis = true;
 			this.filePath.Font = new System.Drawing.Font("Segoe UI", 9.5F);
 			this.filePath.Location = new System.Drawing.Point(15, 79);
 			this.filePath.Name = "filePath";
-			this.filePath.Size = new System.Drawing.Size(0, 17);
+			this.filePath.Size = new System.Drawing.Size(345, 17);
 			this.filePath.TabIndex = 2;
 			// 
 			// guna2Panel1
