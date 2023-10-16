@@ -10,15 +10,20 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.MonthCalendar;
 
 namespace Microsoft_Notepad
 {
     public partial class Notepad : Form
     {
         private string openedFilePath = null;
+        private string filename = "Untitled.txt";
+        private bool isFileSaved = true;
+
         public Notepad()
         {
             InitializeComponent();
+            this.Text = filename + " - " + this.Text;
         }
 
         private void Notepad_KeyDown(object sender, KeyEventArgs e)
@@ -262,16 +267,22 @@ namespace Microsoft_Notepad
                   File.WriteAllText(selectedFileName, textToSave);
 
                   Text = $@"{Path.GetFileName(selectedFileName)} - Notepad";
+                    this.filename = Path.GetFileName(selectedFileName);
                 }
                 catch (IOException ex)
                 {
                   MessageBox.Show("Error saving the file: " + ex.Message);
                 }
-              }
+                            saveToolStripMenuItem.Enabled = false;
+                            saveAsToolStripMenuItem.Enabled = false;
+                        } else
+                {
+                    saveToolStripMenuItem.Enabled = true;
+                    saveAsToolStripMenuItem.Enabled = true;
+                }
             } 
           }
-          saveToolStripMenuItem.Enabled = false;
-          saveAsToolStripMenuItem.Enabled = false;
+          
         }
         catch (Exception ex)
         {
@@ -313,10 +324,14 @@ namespace Microsoft_Notepad
               {
                 MessageBox.Show("Error saving the file: " + ex.Message);
               }
+                    saveToolStripMenuItem.Enabled = false;
+                    saveAsToolStripMenuItem.Enabled = false;
+                } else
+                {
+                    saveToolStripMenuItem.Enabled = true;
+                    saveAsToolStripMenuItem.Enabled = true;
+                }
             }
-          }
-          saveToolStripMenuItem.Enabled = false;
-          saveAsToolStripMenuItem.Enabled = false;
         }
         catch (Exception ex)
         {
@@ -384,6 +399,65 @@ namespace Microsoft_Notepad
         private void printToolStripMenuItem_Click(object sender, EventArgs e)
         {
             printDialog1.ShowDialog();
+        }
+
+        private void newWindowToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Notepad notepad = new Notepad();
+
+            notepad.Show();
+        }
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFile = new OpenFileDialog();
+            openFile.Filter = "Text(*.txt)|*.txt";
+            openFile.InitialDirectory = "D:";
+            openFile.Title = "Open File";
+            string content;
+            if (openFile.ShowDialog() == DialogResult.OK)
+            {
+                this.richTextBox1.TextChanged -= richTextBox1_TextChanged_1;
+                Stream stream = File.Open(openFile.FileName, FileMode.Open, FileAccess.ReadWrite);
+                using (StreamReader streamReader = new StreamReader(stream))
+                {
+                    content = streamReader.ReadToEnd();
+                }
+                UpdateFileStatus();
+                this.richTextBox1.TextChanged += richTextBox1_TextChanged_1;
+                UpdateView();
+            }
+
+            this.filename = openFile.FileName;
+
+            Stream stream2 = File.Open(openFile.FileName, FileMode.Open, FileAccess.ReadWrite);
+            using (StreamReader streamReader = new StreamReader(stream2))
+            {
+                content = streamReader.ReadToEnd();
+            }
+            UpdateFileStatus();
+        }
+
+        private void UpdateFileStatus()
+        {
+            string filename = this.filename.Substring(this.filename.LastIndexOf("\\") + 1);
+            this.filename = filename;
+            this.isFileSaved = true;
+            saveToolStripMenuItem.Enabled = false;
+            saveAsToolStripMenuItem.Enabled = false;
+        }
+
+        private void UpdateView()
+        {
+            this.Text = !isFileSaved ? "*" + filename + " - Notepad" : filename + " - Notepad";
+        }
+
+        private void richTextBox1_TextChanged_1(object sender, EventArgs e)
+        {
+            isFileSaved = false;
+            UpdateView();
+            saveToolStripMenuItem.Enabled = true;
+            saveAsToolStripMenuItem.Enabled = true;
         }
     }
 }
