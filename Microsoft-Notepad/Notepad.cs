@@ -73,14 +73,14 @@ namespace Microsoft_Notepad
 			int currentPercentage = int.Parse(label3.Text.Replace("%", ""));
 			int newPercentage = currentPercentage + 10;
 			label3.Text = $"{newPercentage}%";
-			
+
 		}
 
 		private void zoomOutToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			if (int.Parse(label3.Text.Replace("%", "")) <= 10) return;
 			richTextBox1.ZoomFactor -= 0.1F;
-			
+
 			int currentPercentage = int.Parse(label3.Text.Replace("%", ""));
 			int newPercentage = currentPercentage - 10;
 			label3.Text = $"{newPercentage}%";
@@ -105,97 +105,241 @@ namespace Microsoft_Notepad
 				gunaLinePanel2.Show();
 			}
 		}
-		
 
-	//
-	// HELP
-	//
-	private void viewHelpToolStripMenuItem_Click(object sender, EventArgs e)
-	{
-		string helpUrl = "https://support.microsoft.com/vi-vn/windows/tr%C6%A1%CC%A3-giu%CC%81p-trong-notepad-4d68c388-2ff2-0e7f-b706-35fb2ab88a8c";
 
-		try
+		//
+		// HELP
+		//
+		private void viewHelpToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-		// Use the default web browser to open the help page
-		System.Diagnostics.Process.Start(helpUrl);
-		}
-		catch (Exception ex)
-		{
-		// Handle any exceptions, e.g., if the user doesn't have a default browser set.
-		MessageBox.Show("Error opening help: " + ex.Message);
-		}
-	}
+			string helpUrl = "https://support.microsoft.com/vi-vn/windows/tr%C6%A1%CC%A3-giu%CC%81p-trong-notepad-4d68c388-2ff2-0e7f-b706-35fb2ab88a8c";
 
-	private void sendFeedbackToolStripMenuItem_Click(object sender, EventArgs e)
-	{
-		string feedbackHubUri = "feedback-hub:";
-		try
-		{
-		System.Diagnostics.Process.Start(feedbackHubUri);
-		}
-		catch (Exception ex)
-		{
-		// Handle any exceptions, e.g., if the user doesn't have a default browser set.
-		MessageBox.Show("Error opening help: " + ex.Message);
-		}
-	}
-
-	private void aboutNotepadToolStripMenuItem_Click(object sender, EventArgs e)
-	{
-		try
-		{
-		// Create an instance of the aboutForm
-		using (aboutForm aboutDialog = new aboutForm())
-		{
-			// Show the aboutForm as a dialog
-			aboutDialog.ShowDialog();
-		}
-		}
-		catch (Exception ex)
-		{
-		// Handle any exceptions, e.g., if the user doesn't have a default browser set.
-		MessageBox.Show("Error opening help: " + ex.Message);
-		}
-	}
-
-	//
-	// FILE
-	//
-	private void openFile()
-	{
-		using (OpenFileDialog openFileDialog = new OpenFileDialog())
-		{
-			// Set properties for the OpenFileDialog
-			openFileDialog.Filter = "Text Files|*.txt|All Files|*.*";
-			openFileDialog.Title = "Open File";
-
-			// Show the OpenFileDialog and get the result
-			if (openFileDialog.ShowDialog() == DialogResult.OK)
+			try
 			{
-				// Get the selected file name
-				openedFilePath = openFileDialog.FileName;
-				string selectedFileName = openFileDialog.SafeFileName;
-				Text = $@"{selectedFileName} - Notepad";
-				try
-				{
-					string fileContent = File.ReadAllText(openedFilePath);
+				// Use the default web browser to open the help page
+				System.Diagnostics.Process.Start(helpUrl);
+			}
+			catch (Exception ex)
+			{
+				// Handle any exceptions, e.g., if the user doesn't have a default browser set.
+				MessageBox.Show("Error opening help: " + ex.Message);
+			}
+		}
 
-					// Assuming textBox1 is the name of your TextBox control
-					richTextBox1.Text = fileContent;
-					saveToolStripMenuItem.Enabled = false;
-					saveAsToolStripMenuItem.Enabled = false;
-				}
-				catch (IOException ex)
+		private void sendFeedbackToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			string feedbackHubUri = "feedback-hub:";
+			try
+			{
+				System.Diagnostics.Process.Start(feedbackHubUri);
+			}
+			catch (Exception ex)
+			{
+				// Handle any exceptions, e.g., if the user doesn't have a default browser set.
+				MessageBox.Show("Error opening help: " + ex.Message);
+			}
+		}
+
+		private void aboutNotepadToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				// Create an instance of the aboutForm
+				using (aboutForm aboutDialog = new aboutForm())
 				{
-				MessageBox.Show("Error reading the file: " + ex.Message);
+					// Show the aboutForm as a dialog
+					aboutDialog.ShowDialog();
+				}
+			}
+			catch (Exception ex)
+			{
+				// Handle any exceptions, e.g., if the user doesn't have a default browser set.
+				MessageBox.Show("Error opening help: " + ex.Message);
+			}
+		}
+
+		//
+		// FILE
+		//
+		private void openFile()
+		{
+			using (OpenFileDialog openFileDialog = new OpenFileDialog())
+			{
+				// Set properties for the OpenFileDialog
+				openFileDialog.Filter = "Text Files|*.txt|All Files|*.*";
+				openFileDialog.Title = "Open File";
+
+				// Show the OpenFileDialog and get the result
+				if (openFileDialog.ShowDialog() == DialogResult.OK)
+				{
+					// Get the selected file name
+					openedFilePath = openFileDialog.FileName;
+					filename = openFileDialog.SafeFileName;
+					try
+					{
+						string fileContent = File.ReadAllText(openedFilePath);
+
+						richTextBox1.Text = fileContent;
+						UpdateFileStatus();
+						UpdateView();
+					}
+					catch (IOException ex)
+					{
+						MessageBox.Show("Error reading the file: " + ex.Message);
+					}
 				}
 			}
 		}
-	}
 
-	private void openToolStripMenuItem_Click(object sender, EventArgs e)
-	{
-		try
+		private void openToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				if (saveToolStripMenuItem.Enabled || saveAsToolStripMenuItem.Enabled)
+				{
+					using (saveConfirm dialog = new saveConfirm())
+					{
+						dialog.fileName = openedFilePath;
+						dialog.ShowDialog();
+
+						if (dialog.save)
+						{
+							saveToolStripMenuItem_Click(sender, e);
+							openFile();
+						}
+						else if (dialog.notSave)
+						{
+							openFile();
+						}
+					}
+				}
+				else
+				{
+					openFile();
+				}
+			}
+			catch (Exception ex)
+			{
+				// Handle any exceptions, e.g., if the user doesn't have a default browser set.
+				MessageBox.Show("Error opening help: " + ex.Message);
+			}
+		}
+
+		private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				if (!string.IsNullOrEmpty(openedFilePath))
+				{
+					try
+					{
+						string textToSave = richTextBox1.Text;
+						File.WriteAllText(openedFilePath, textToSave);
+						UpdateFileStatus();
+						UpdateView();
+					}
+					catch (IOException ex)
+					{
+						MessageBox.Show("Error saving the file: " + ex.Message);
+					}
+				}
+				else
+				{
+					using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+					{
+						// Set properties for the SaveFileDialog
+						saveFileDialog.Filter = "Text Files|*.txt|All Files|*.*";
+						saveFileDialog.Title = "Save File";
+
+						// Show the SaveFileDialog and get the result
+						if (saveFileDialog.ShowDialog() == DialogResult.OK)
+						{
+							// Get the selected file name
+							string selectedFileName = saveFileDialog.FileName;
+
+							try
+							{
+								// Assuming textBox1 is the name of your TextBox control
+								string textToSave = richTextBox1.Text;
+
+								// Save the text to the selected file
+								File.WriteAllText(selectedFileName, textToSave);
+
+								filename = Path.GetFileName(selectedFileName);
+								UpdateFileStatus();
+								UpdateView();
+							}
+							catch (IOException ex)
+							{
+								MessageBox.Show("Error saving the file: " + ex.Message);
+							}
+						}
+						else
+						{
+							saveToolStripMenuItem.Enabled = true;
+							saveAsToolStripMenuItem.Enabled = true;
+						}
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				// Handle any exceptions, e.g., if the user doesn't have a default browser set.
+				MessageBox.Show("Error opening help: " + ex.Message);
+			}
+		}
+
+		private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+				{
+					// Set properties for the SaveFileDialog
+					saveFileDialog.Filter = "Text Files|*.txt|All Files|*.*";
+					saveFileDialog.Title = "Save File";
+
+					// Show the SaveFileDialog and get the result
+					if (saveFileDialog.ShowDialog() == DialogResult.OK)
+					{
+						// Get the selected file name
+						string selectedFileName = saveFileDialog.FileName;
+
+						try
+						{
+							// Assuming textBox1 is the name of your TextBox control
+							string textToSave = richTextBox1.Text;
+
+							// Save the text to the selected file
+							File.WriteAllText(selectedFileName, textToSave);
+
+							if (openedFilePath == null)
+							{
+								filename = Path.GetFileName(selectedFileName);
+								UpdateFileStatus();
+								UpdateView();
+							}
+						}
+						catch (IOException ex)
+						{
+							MessageBox.Show("Error saving the file: " + ex.Message);
+						}
+					}
+					else
+					{
+						saveToolStripMenuItem.Enabled = true;
+						saveAsToolStripMenuItem.Enabled = true;
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				// Handle any exceptions, e.g., if the user doesn't have a default browser set.
+				MessageBox.Show("Error opening help: " + ex.Message);
+			}
+		}
+
+		private void exitToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			if (saveToolStripMenuItem.Enabled || saveAsToolStripMenuItem.Enabled)
 			{
@@ -207,188 +351,46 @@ namespace Microsoft_Notepad
 					if (dialog.save)
 					{
 						saveToolStripMenuItem_Click(sender, e);
-						openFile();
 					}
 					else if (dialog.notSave)
 					{
-						openFile();
+						Close();
 					}
 				}
 			}
 			else
 			{
-				openFile();
+				Close();
 			}
 		}
-		catch (Exception ex)
+
+		private void richTextBox1_TextChanged(object sender, EventArgs e)
 		{
-			// Handle any exceptions, e.g., if the user doesn't have a default browser set.
-			MessageBox.Show("Error opening help: " + ex.Message);
+			isFileSaved = false;
+			UpdateView();
+			saveToolStripMenuItem.Enabled = true;
+			saveAsToolStripMenuItem.Enabled = true;
 		}
-	}
 
-	private void saveToolStripMenuItem_Click(object sender, EventArgs e)
-	{
-		try
+		private void Notepad_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			if (!string.IsNullOrEmpty(openedFilePath))
+			if (saveToolStripMenuItem.Enabled || saveAsToolStripMenuItem.Enabled)
 			{
-				try
+				using (saveConfirm dialog = new saveConfirm())
 				{
-					string textToSave = richTextBox1.Text;
-					File.WriteAllText(openedFilePath, textToSave);
-					saveToolStripMenuItem.Enabled = false;
-					saveAsToolStripMenuItem.Enabled = false;
-				}
-				catch (IOException ex)
-				{
-					MessageBox.Show("Error saving the file: " + ex.Message);
-				}
-			}
-			else
-			{
-				using (SaveFileDialog saveFileDialog = new SaveFileDialog())
-				{
-					// Set properties for the SaveFileDialog
-					saveFileDialog.Filter = "Text Files|*.txt|All Files|*.*";
-					saveFileDialog.Title = "Save File";
-
-					// Show the SaveFileDialog and get the result
-					if (saveFileDialog.ShowDialog() == DialogResult.OK)
+					dialog.fileName = openedFilePath;
+					dialog.ShowDialog();
+					if (dialog.save)
 					{
-					// Get the selected file name
-						string selectedFileName = saveFileDialog.FileName;
-
-						try
-						{
-							// Assuming textBox1 is the name of your TextBox control
-							string textToSave = richTextBox1.Text;
-
-							// Save the text to the selected file
-							File.WriteAllText(selectedFileName, textToSave);
-
-							Text = $@"{Path.GetFileName(selectedFileName)} - Notepad";
-							this.filename = Path.GetFileName(selectedFileName);
-						}
-						catch (IOException ex)
-						{
-							MessageBox.Show("Error saving the file: " + ex.Message);
-						}
-
-						saveToolStripMenuItem.Enabled = false;
-						saveAsToolStripMenuItem.Enabled = false;
-					} 
-					else
-					{
-						saveToolStripMenuItem.Enabled = true;
-						saveAsToolStripMenuItem.Enabled = true;
+						saveToolStripMenuItem_Click(sender, e);
 					}
-				} 
-			}
-		}
-		catch (Exception ex)
-		{
-		// Handle any exceptions, e.g., if the user doesn't have a default browser set.
-		MessageBox.Show("Error opening help: " + ex.Message);
-		}
-	}
-
-	private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
-	{
-		try
-		{
-			using (SaveFileDialog saveFileDialog = new SaveFileDialog())
-			{
-				// Set properties for the SaveFileDialog
-				saveFileDialog.Filter = "Text Files|*.txt|All Files|*.*";
-				saveFileDialog.Title = "Save File";
-
-				// Show the SaveFileDialog and get the result
-				if (saveFileDialog.ShowDialog() == DialogResult.OK)
-				{
-					// Get the selected file name
-					string selectedFileName = saveFileDialog.FileName;
-
-					try
+					else if (dialog.cancel)
 					{
-						// Assuming textBox1 is the name of your TextBox control
-						string textToSave = richTextBox1.Text;
-
-						// Save the text to the selected file
-						File.WriteAllText(selectedFileName, textToSave);
-
-						if (openedFilePath == null)
-						{
-							Text = $@"{Path.GetFileName(selectedFileName)} - Notepad";
-						}
+						e.Cancel = true;
 					}
-					catch (IOException ex)
-					{
-						MessageBox.Show("Error saving the file: " + ex.Message);
-					}
-					saveToolStripMenuItem.Enabled = false;
-					saveAsToolStripMenuItem.Enabled = false;
-				}
-				else
-				{
-					saveToolStripMenuItem.Enabled = true;
-					saveAsToolStripMenuItem.Enabled = true;
 				}
 			}
 		}
-		catch (Exception ex)
-		{
-			// Handle any exceptions, e.g., if the user doesn't have a default browser set.
-			MessageBox.Show("Error opening help: " + ex.Message);
-		}
-	}
-
-	private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-	{
-		if (saveToolStripMenuItem.Enabled || saveAsToolStripMenuItem.Enabled)
-		{
-			using (saveConfirm dialog = new saveConfirm())
-			{
-				dialog.fileName = openedFilePath;
-				dialog.ShowDialog();
-
-				if (dialog.save)
-				{
-					saveToolStripMenuItem_Click(sender, e);
-				}
-				else if (dialog.notSave)
-				{
-					Close();
-				}
-			}
-		}
-	}
-
-	private void richTextBox1_TextChanged(object sender, EventArgs e)
-	{
-		saveToolStripMenuItem.Enabled = true;
-		saveAsToolStripMenuItem.Enabled = true;
-	}
-
-	private void Notepad_FormClosing(object sender, FormClosingEventArgs e)
-	{
-		if (saveToolStripMenuItem.Enabled || saveAsToolStripMenuItem.Enabled)
-		{
-		using (saveConfirm dialog = new saveConfirm())
-		{
-			dialog.fileName = openedFilePath;
-			dialog.ShowDialog();
-			if (dialog.save)
-			{
-			saveToolStripMenuItem_Click(sender, e);
-			}
-			else if (dialog.cancel)
-			{
-			e.Cancel = true;
-			}
-		}
-		}
-	}
 
 		private void pageSetupToolStripMenuItem_Click(object sender, EventArgs e)
 		{
@@ -421,14 +423,14 @@ namespace Microsoft_Notepad
 			string content;
 			if (openFile.ShowDialog() == DialogResult.OK)
 			{
-				this.richTextBox1.TextChanged -= richTextBox1_TextChanged_1;
+				this.richTextBox1.TextChanged -= richTextBox1_TextChanged;
 				Stream stream = File.Open(openFile.FileName, FileMode.Open, FileAccess.ReadWrite);
 				using (StreamReader streamReader = new StreamReader(stream))
 				{
 					content = streamReader.ReadToEnd();
 				}
 				UpdateFileStatus();
-				this.richTextBox1.TextChanged += richTextBox1_TextChanged_1;
+				this.richTextBox1.TextChanged += richTextBox1_TextChanged;
 				UpdateView();
 			}
 
@@ -454,14 +456,6 @@ namespace Microsoft_Notepad
 		private void UpdateView()
 		{
 			this.Text = !isFileSaved ? "*" + filename + " - Notepad" : filename + " - Notepad";
-		}
-
-		private void richTextBox1_TextChanged_1(object sender, EventArgs e)
-		{
-			isFileSaved = false;
-			UpdateView();
-			saveToolStripMenuItem.Enabled = true;
-			saveAsToolStripMenuItem.Enabled = true;
 		}
 	}
 }
