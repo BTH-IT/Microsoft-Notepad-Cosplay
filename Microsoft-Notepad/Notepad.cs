@@ -345,13 +345,24 @@ namespace Microsoft_Notepad
         }
       }
 
-      private void richTextBox1_TextChanged(object sender, EventArgs e)
-      {
-        saveToolStripMenuItem.Enabled = true;
-        saveAsToolStripMenuItem.Enabled = true;
-      }
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            saveToolStripMenuItem.Enabled = true;
+            saveAsToolStripMenuItem.Enabled = true;
 
-      private void Notepad_FormClosing(object sender, FormClosingEventArgs e)
+            int lineNumber = richTextBox1.GetLineFromCharIndex(richTextBox1.SelectionStart) + 1;
+            int columnNumber = richTextBox1.SelectionStart - richTextBox1.GetFirstCharIndexOfCurrentLine() + 1;
+            label4.Text = $"Ln {lineNumber}, Col {columnNumber}";
+        }
+        private void richTextBox1_MouseDown(object sender, MouseEventArgs e)
+        {
+            int index = richTextBox1.GetCharIndexFromPosition(e.Location);
+            int lineNumber = richTextBox1.GetLineFromCharIndex(index) + 1;
+            int columnNumber = index - richTextBox1.GetFirstCharIndexOfCurrentLine() + 1;
+            label4.Text = $"Ln {lineNumber}, Col {columnNumber}";
+        }
+
+        private void Notepad_FormClosing(object sender, FormClosingEventArgs e)
       {
         if (saveToolStripMenuItem.Enabled || saveAsToolStripMenuItem.Enabled)
         {
@@ -370,5 +381,5 @@ namespace Microsoft_Notepad
           }
         }
       }
-	  }
+    }
 }
