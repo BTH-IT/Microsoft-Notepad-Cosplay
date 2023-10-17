@@ -646,5 +646,36 @@ namespace Microsoft_Notepad
 				replaceForm.Show();
 			}
 		}
-	}
+
+        //
+        //Format
+        //
+        private void Notepad_Load(object sender, EventArgs e)
+        {
+			richTextBox1.WordWrap = wordWrapToolStripMenuItem.Checked;
+			statusBarToolStripMenuItem.Enabled = !wordWrapToolStripMenuItem.Checked;
+			if (statusBarToolStripMenuItem.Enabled)
+				statusBarToolStripMenuItem.Checked = true;
+        }
+
+        private void wordWrapToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+			richTextBox1.WordWrap = wordWrapToolStripMenuItem.Checked;
+            statusBarToolStripMenuItem.Enabled = !wordWrapToolStripMenuItem.Checked;
+			statusBarToolStripMenuItem.Checked = true;
+        }
+
+        private void fontToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+			FontDialog fontDialog = new FontDialog();
+			fontDialog.ShowColor = true;
+			fontDialog.Font = richTextBox1.Font;
+			fontDialog.Color = richTextBox1.ForeColor;
+			if(fontDialog.ShowDialog() != DialogResult.Cancel)
+			{
+				richTextBox1.Font = fontDialog.Font;
+				richTextBox1.ForeColor = fontDialog.Color;
+			}
+        }
+    }
 }		
