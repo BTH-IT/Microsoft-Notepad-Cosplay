@@ -217,6 +217,7 @@ namespace Microsoft_Notepad
             this.printToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.printToolStripMenuItem.Name = "printToolStripMenuItem";
             this.printToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
+
             this.printToolStripMenuItem.Size = new System.Drawing.Size(274, 26);
             this.printToolStripMenuItem.Text = "&Print...";
             this.printToolStripMenuItem.Click += new System.EventHandler(this.printToolStripMenuItem_Click);
@@ -411,17 +412,20 @@ namespace Microsoft_Notepad
             // 
             this.wordWrapToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.wordWrapToolStripMenuItem.Checked = true;
+            this.wordWrapToolStripMenuItem.CheckOnClick = true;
             this.wordWrapToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.wordWrapToolStripMenuItem.Name = "wordWrapToolStripMenuItem";
-            this.wordWrapToolStripMenuItem.Size = new System.Drawing.Size(168, 26);
+            this.wordWrapToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.wordWrapToolStripMenuItem.Text = "&Word Wrap";
+            this.wordWrapToolStripMenuItem.CheckedChanged += new System.EventHandler(this.wordWrapToolStripMenuItem_CheckedChanged);
             // 
             // fontToolStripMenuItem
             // 
             this.fontToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.fontToolStripMenuItem.Name = "fontToolStripMenuItem";
-            this.fontToolStripMenuItem.Size = new System.Drawing.Size(168, 26);
+            this.fontToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.fontToolStripMenuItem.Text = "&Font...";
+            this.fontToolStripMenuItem.Click += new System.EventHandler(this.fontToolStripMenuItem_Click);
             // 
             // viewToolStripMenuItem
             // 
@@ -475,9 +479,10 @@ namespace Microsoft_Notepad
             // 
             this.statusBarToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.statusBarToolStripMenuItem.Checked = true;
+            this.statusBarToolStripMenuItem.CheckOnClick = true;
             this.statusBarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.statusBarToolStripMenuItem.Name = "statusBarToolStripMenuItem";
-            this.statusBarToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
+            this.statusBarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.statusBarToolStripMenuItem.Text = "&Status Bar";
             this.statusBarToolStripMenuItem.Click += new System.EventHandler(this.statusBarToolStripMenuItem_Click);
             // 
@@ -567,8 +572,9 @@ namespace Microsoft_Notepad
             // 
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label4.Location = new System.Drawing.Point(0, 0);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(149, 31);
+            this.label4.Size = new System.Drawing.Size(112, 25);
             this.label4.TabIndex = 0;
             this.label4.Text = "Ln 1, Col 1";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -597,8 +603,9 @@ namespace Microsoft_Notepad
             // 
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.Location = new System.Drawing.Point(0, 0);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 31);
+            this.label3.Size = new System.Drawing.Size(37, 25);
             this.label3.TabIndex = 0;
             this.label3.Text = "100%";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -627,8 +634,9 @@ namespace Microsoft_Notepad
             // 
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Location = new System.Drawing.Point(0, 0);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(123, 31);
+            this.label2.Size = new System.Drawing.Size(92, 25);
             this.label2.TabIndex = 0;
             this.label2.Text = "Windows (CRLF)";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -657,8 +665,9 @@ namespace Microsoft_Notepad
             // 
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(143, 31);
+            this.label1.Size = new System.Drawing.Size(107, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "UTF-8";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -703,9 +712,10 @@ namespace Microsoft_Notepad
             this.Controls.Add(this.gunaLinePanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Notepad";
             this.Text = "Notepad";
+            this.Load += new System.EventHandler(this.Notepad_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Notepad_KeyDown);
             this.gunaLinePanel1.ResumeLayout(false);
             this.gunaLinePanel1.PerformLayout();
