@@ -762,5 +762,15 @@ namespace Microsoft_Notepad
 		{
 			undoOperations.TxtAreaTextChangeRequired = true;
 		}
+
+		private void contextMenuStrip1_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			searchToolStripMenuItem.Enabled = richTextBox1.SelectedText.Length > 0;
+			cUTToolStripMenuItem1.Enabled = richTextBox1.SelectedText.Length > 0 ? true : false;
+			copyToolStripMenuItem1.Enabled = richTextBox1.SelectedText.Length > 0 ? true : false;
+			patseToolStripMenuItem.Enabled = Clipboard.GetDataObject().GetDataPresent(DataFormats.Text);
+			deleteToolStripMenuItem1.Enabled = richTextBox1.SelectedText.Length > 0 ? true : false;
+			undoToolStripMenuItem1.Enabled = undoOperations.CanUndo() ? true : false;
+		}
 	}
 }		
