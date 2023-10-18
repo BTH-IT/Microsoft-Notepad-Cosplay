@@ -18,30 +18,30 @@ namespace Microsoft_Notepad
 {
 	public partial class Notepad : Form
 	{
-		private static Notepad instance;
-		public static Notepad Instance
-		{
-			get
-			{
-				if (instance == null)
-				{
-					instance = new Notepad();
-				}
-				return instance;
-			}
-			set
-			{
-				instance = value;
-			}
-		}
-		private string openedFilePath = null;
-		private string filename = "Untitled.txt";
-		private bool isFileSaved = true;
-		private UndoOperations undoOperations;
-		private Timer timer;
-		private FindForm findForm;
-		private ReplaceForm replaceForm;
-		public Notepad()
+        private static Notepad instance;
+        public static Notepad Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new Notepad();
+                }
+                return instance;
+            }
+            set
+            {
+                instance = value;
+            }
+        }
+        private string openedFilePath = null;
+        private string filename = "Untitled.txt";
+        private bool isFileSaved = true;
+        private UndoOperations undoOperations;
+        private Timer timer;
+        private FindForm findForm;
+        private ReplaceForm replaceForm;
+        public Notepad()
 		{
 			InitializeComponent();
 			this.Text = filename + " - " + this.Text;
@@ -340,6 +340,7 @@ namespace Microsoft_Notepad
 							// Save the text to the selected file
 							File.WriteAllText(selectedFileName, textToSave);
 
+
 							if (openedFilePath == null)
 							{
 								filename = Path.GetFileName(selectedFileName);
@@ -409,7 +410,19 @@ namespace Microsoft_Notepad
 			{
 				undoOperations.TxtAreaTextChangeRequired = false;
 			}
-		}
+            int lineNumber = richTextBox1.GetLineFromCharIndex(richTextBox1.SelectionStart) + 1;
+            int columnNumber = richTextBox1.SelectionStart - richTextBox1.GetFirstCharIndexOfCurrentLine() + 1;
+            label4.Text = $"Ln {lineNumber}, Col {columnNumber}";
+        }
+        private void richTextBox1_MouseDown(object sender, MouseEventArgs e)
+        {
+            int index = richTextBox1.GetCharIndexFromPosition(e.Location);
+            int lineNumber = richTextBox1.GetLineFromCharIndex(index) + 1;
+            int columnNumber = index - richTextBox1.GetFirstCharIndexOfCurrentLine() + 1;
+            label4.Text = $"Ln {lineNumber}, Col {columnNumber}";
+        }
+
+  
 
 		private void Notepad_FormClosing(object sender, FormClosingEventArgs e)
 		{
