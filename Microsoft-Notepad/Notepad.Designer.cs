@@ -296,7 +296,6 @@ namespace Microsoft_Notepad
 			this.statusBarToolStripMenuItem.Name = "statusBarToolStripMenuItem";
 			this.statusBarToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
 			this.statusBarToolStripMenuItem.Text = "&Status Bar";
-			this.statusBarToolStripMenuItem.Click += new System.EventHandler(this.statusBarToolStripMenuItem_Click);
 			// 
 			// helpToolStripMenuItem
 			// 
@@ -804,7 +803,6 @@ namespace Microsoft_Notepad
 			this.Name = "Notepad";
 			this.Text = "Notepad";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Notepad_FormClosing);
-			this.Load += new System.EventHandler(this.Notepad_Load);
 			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Notepad_KeyDown);
 			this.gunaLinePanel1.ResumeLayout(false);
 			this.gunaLinePanel1.PerformLayout();
