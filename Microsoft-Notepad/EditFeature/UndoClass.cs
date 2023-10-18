@@ -24,8 +24,14 @@ namespace Microsoft_Notepad
 		}
 		public string Undo() 
 		{
-			string item = UndoStack.Pop();
-			return UndoStack.First();
+			try
+			{
+                string item = UndoStack.Pop();
+                return UndoStack.First();
+            } catch
+			{
+                return "";
+            }
 		}
 
 		public bool CanUndo()

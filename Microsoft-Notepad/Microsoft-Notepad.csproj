@@ -36,11 +36,18 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Bunifu_UI_v1.52">
+      <HintPath>..\..\C-Sharp-BookShop\Bunifu_UI_v1.52.dll</HintPath>
+    </Reference>
     <Reference Include="Guna.UI">
       <HintPath>..\..\C-Sharp-BookShop\Guna.UI.dll</HintPath>
     </Reference>
     <Reference Include="Guna.UI2">
       <HintPath>..\..\C-Sharp-BookShop\Guna.UI2.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Word.15.0.4797.1004\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
@@ -96,9 +103,9 @@
     <EmbeddedResource Include="EditFeature\FindForm.resx">
       <DependentUpon>FindForm.cs</DependentUpon>
     </EmbeddedResource>
-	<EmbeddedResource Include="EditFeature\GoToForm.resx">
-		<DependentUpon>GoToForm.cs</DependentUpon>
-	</EmbeddedResource>
+    <EmbeddedResource Include="EditFeature\GoToForm.resx">
+      <DependentUpon>GoToForm.cs</DependentUpon>
+    </EmbeddedResource>
     <Compile Include="saveConfirm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,11 +129,13 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="EditFeature\ReplaceForm.resx">
-	    <DependentUpon>ReplaceForm.cs</DependentUpon>
-    </EmbeddedResource>	
+      <DependentUpon>ReplaceForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="saveConfirm.resx">
       <DependentUpon>saveConfirm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="bin\Debug\rich.rtf" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -64,6 +64,12 @@ namespace Microsoft_Notepad
             this.formatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.wordWrapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.alignToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.centerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.leftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bulletsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.backgroundColorLinesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zoomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zoomInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -217,7 +223,6 @@ namespace Microsoft_Notepad
             this.printToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.printToolStripMenuItem.Name = "printToolStripMenuItem";
             this.printToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-
             this.printToolStripMenuItem.Size = new System.Drawing.Size(274, 26);
             this.printToolStripMenuItem.Text = "&Print...";
             this.printToolStripMenuItem.Click += new System.EventHandler(this.printToolStripMenuItem_Click);
@@ -403,7 +408,10 @@ namespace Microsoft_Notepad
             this.formatToolStripMenuItem.BackColor = System.Drawing.Color.White;
             this.formatToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.wordWrapToolStripMenuItem,
-            this.fontToolStripMenuItem});
+            this.fontToolStripMenuItem,
+            this.alignToolStripMenuItem,
+            this.bulletsToolStripMenuItem,
+            this.backgroundColorLinesToolStripMenuItem});
             this.formatToolStripMenuItem.Name = "formatToolStripMenuItem";
             this.formatToolStripMenuItem.Size = new System.Drawing.Size(70, 27);
             this.formatToolStripMenuItem.Text = "F&ormat";
@@ -415,7 +423,7 @@ namespace Microsoft_Notepad
             this.wordWrapToolStripMenuItem.CheckOnClick = true;
             this.wordWrapToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.wordWrapToolStripMenuItem.Name = "wordWrapToolStripMenuItem";
-            this.wordWrapToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.wordWrapToolStripMenuItem.Size = new System.Drawing.Size(248, 26);
             this.wordWrapToolStripMenuItem.Text = "&Word Wrap";
             this.wordWrapToolStripMenuItem.CheckedChanged += new System.EventHandler(this.wordWrapToolStripMenuItem_CheckedChanged);
             // 
@@ -423,9 +431,57 @@ namespace Microsoft_Notepad
             // 
             this.fontToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.fontToolStripMenuItem.Name = "fontToolStripMenuItem";
-            this.fontToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.fontToolStripMenuItem.Size = new System.Drawing.Size(248, 26);
             this.fontToolStripMenuItem.Text = "&Font...";
             this.fontToolStripMenuItem.Click += new System.EventHandler(this.fontToolStripMenuItem_Click);
+            // 
+            // alignToolStripMenuItem
+            // 
+            this.alignToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.alignToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.centerToolStripMenuItem,
+            this.leftToolStripMenuItem,
+            this.rightToolStripMenuItem});
+            this.alignToolStripMenuItem.Name = "alignToolStripMenuItem";
+            this.alignToolStripMenuItem.Size = new System.Drawing.Size(248, 26);
+            this.alignToolStripMenuItem.Text = "&Align";
+            // 
+            // centerToolStripMenuItem
+            // 
+            this.centerToolStripMenuItem.Name = "centerToolStripMenuItem";
+            this.centerToolStripMenuItem.Size = new System.Drawing.Size(135, 26);
+            this.centerToolStripMenuItem.Text = "&Center";
+            this.centerToolStripMenuItem.Click += new System.EventHandler(this.centerToolStripMenuItem_Click);
+            // 
+            // leftToolStripMenuItem
+            // 
+            this.leftToolStripMenuItem.Name = "leftToolStripMenuItem";
+            this.leftToolStripMenuItem.Size = new System.Drawing.Size(135, 26);
+            this.leftToolStripMenuItem.Text = "&Left";
+            this.leftToolStripMenuItem.Click += new System.EventHandler(this.leftToolStripMenuItem_Click);
+            // 
+            // rightToolStripMenuItem
+            // 
+            this.rightToolStripMenuItem.Name = "rightToolStripMenuItem";
+            this.rightToolStripMenuItem.Size = new System.Drawing.Size(135, 26);
+            this.rightToolStripMenuItem.Text = "&Right";
+            this.rightToolStripMenuItem.Click += new System.EventHandler(this.rightToolStripMenuItem_Click);
+            // 
+            // bulletsToolStripMenuItem
+            // 
+            this.bulletsToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.bulletsToolStripMenuItem.Name = "bulletsToolStripMenuItem";
+            this.bulletsToolStripMenuItem.Size = new System.Drawing.Size(248, 26);
+            this.bulletsToolStripMenuItem.Text = "&Bullets";
+            this.bulletsToolStripMenuItem.Click += new System.EventHandler(this.bulletsToolStripMenuItem_Click);
+            // 
+            // backgroundColorLinesToolStripMenuItem
+            // 
+            this.backgroundColorLinesToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.backgroundColorLinesToolStripMenuItem.Name = "backgroundColorLinesToolStripMenuItem";
+            this.backgroundColorLinesToolStripMenuItem.Size = new System.Drawing.Size(248, 26);
+            this.backgroundColorLinesToolStripMenuItem.Text = "Bac&kground Color Lines";
+            this.backgroundColorLinesToolStripMenuItem.Click += new System.EventHandler(this.backgroundColorLinesToolStripMenuItem_Click);
             // 
             // viewToolStripMenuItem
             // 
@@ -445,7 +501,7 @@ namespace Microsoft_Notepad
             this.zoomOutToolStripMenuItem,
             this.restoreDefaultZoomToolStripMenuItem});
             this.zoomToolStripMenuItem.Name = "zoomToolStripMenuItem";
-            this.zoomToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
+            this.zoomToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.zoomToolStripMenuItem.Text = "&Zoom";
             // 
             // zoomInToolStripMenuItem
@@ -482,7 +538,7 @@ namespace Microsoft_Notepad
             this.statusBarToolStripMenuItem.CheckOnClick = true;
             this.statusBarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.statusBarToolStripMenuItem.Name = "statusBarToolStripMenuItem";
-            this.statusBarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.statusBarToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.statusBarToolStripMenuItem.Text = "&Status Bar";
             this.statusBarToolStripMenuItem.Click += new System.EventHandler(this.statusBarToolStripMenuItem_Click);
             // 
@@ -574,7 +630,7 @@ namespace Microsoft_Notepad
             this.label4.Location = new System.Drawing.Point(0, 0);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(112, 25);
+            this.label4.Size = new System.Drawing.Size(149, 31);
             this.label4.TabIndex = 0;
             this.label4.Text = "Ln 1, Col 1";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -605,7 +661,7 @@ namespace Microsoft_Notepad
             this.label3.Location = new System.Drawing.Point(0, 0);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(37, 25);
+            this.label3.Size = new System.Drawing.Size(49, 31);
             this.label3.TabIndex = 0;
             this.label3.Text = "100%";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -636,7 +692,7 @@ namespace Microsoft_Notepad
             this.label2.Location = new System.Drawing.Point(0, 0);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(92, 25);
+            this.label2.Size = new System.Drawing.Size(123, 31);
             this.label2.TabIndex = 0;
             this.label2.Text = "Windows (CRLF)";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -667,7 +723,7 @@ namespace Microsoft_Notepad
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 25);
+            this.label1.Size = new System.Drawing.Size(143, 31);
             this.label1.TabIndex = 0;
             this.label1.Text = "UTF-8";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -715,6 +771,7 @@ namespace Microsoft_Notepad
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Notepad";
             this.Text = "Notepad";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Notepad_FormClosing);
             this.Load += new System.EventHandler(this.Notepad_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Notepad_KeyDown);
             this.gunaLinePanel1.ResumeLayout(false);
@@ -793,5 +850,11 @@ namespace Microsoft_Notepad
         private System.Drawing.Printing.PrintDocument printDocument1;
         private PrintDialog printDialog1;
         private PageSetupDialog pageSetupDialog1;
+        private ToolStripMenuItem alignToolStripMenuItem;
+        private ToolStripMenuItem centerToolStripMenuItem;
+        private ToolStripMenuItem leftToolStripMenuItem;
+        private ToolStripMenuItem rightToolStripMenuItem;
+        private ToolStripMenuItem bulletsToolStripMenuItem;
+        private ToolStripMenuItem backgroundColorLinesToolStripMenuItem;
     }
 }

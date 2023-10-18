@@ -1,18 +1,8 @@
-using Microsoft.VisualBasic.ApplicationServices;
-using Microsoft.VisualBasic;
-using Microsoft_Notepad.EditFeature;
+﻿using Microsoft_Notepad.EditFeature;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.MonthCalendar;
 
 namespace Microsoft_Notepad
 {
@@ -51,9 +41,11 @@ namespace Microsoft_Notepad
 			timer.Tick += timer_Tick;
 			timer.Interval = 500;
 			richTextBox1.HideSelection = false;
-		}
+			richTextBox1.SelectionIndent = 5;
+			richTextBox1.BulletIndent = 5;
+        }
 
-		private void Notepad_KeyDown(object sender, KeyEventArgs e)
+        private void Notepad_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.Control)
 			{
@@ -447,7 +439,7 @@ namespace Microsoft_Notepad
 		private void pageSetupToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			pageSetupDialog1.ShowDialog();
-		}
+        }
 
 		private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
 		{
@@ -456,7 +448,12 @@ namespace Microsoft_Notepad
 
 		private void printToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			printDialog1.ShowDialog();
+			DialogResult result = printDialog1.ShowDialog();
+
+			if (result == DialogResult.OK)
+			{
+				printDocument1.Print();
+            }
 		}
 
 		private void newWindowToolStripMenuItem_Click(object sender, EventArgs e)
@@ -689,6 +686,33 @@ namespace Microsoft_Notepad
 				richTextBox1.Font = fontDialog.Font;
 				richTextBox1.ForeColor = fontDialog.Color;
 			}
+        }
+
+        private void centerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.richTextBox1.SelectionAlignment = HorizontalAlignment.Center;
+        }
+
+        private void leftToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.richTextBox1.SelectionAlignment = HorizontalAlignment.Left;
+        }
+
+        private void rightToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.richTextBox1.SelectionAlignment = HorizontalAlignment.Right;
+        }
+
+        private void bulletsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+			richTextBox1.SelectionBullet = !richTextBox1.SelectionBullet;
+        }
+
+        private void backgroundColorLinesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ColorDialog colorDlg = new ColorDialog();
+            colorDlg.ShowDialog();
+            richTextBox1.SelectionBackColor = colorDlg.Color;
         }
     }
 }		
