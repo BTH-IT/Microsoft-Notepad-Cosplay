@@ -9,6 +9,8 @@ namespace Microsoft_Notepad
 	public partial class Notepad : Form
 	{
         private static Notepad instance;
+
+        int lineNumber = 1;
         public static Notepad Instance
         {
             get
@@ -63,17 +65,18 @@ namespace Microsoft_Notepad
 				}
 			}
 		}
+
 		private void richTextBox1_MouseWheel(object sender, MouseEventArgs e)
 		{
 			if (Control.ModifierKeys == Keys.Control)
 			{
 				if (e.Delta > 0)
 				{
-					if (int.Parse(label3.Text.Replace("%", "")) >= 500) return;
+                    if (int.Parse(label3.Text.Replace("%", "")) >= 500) return;
 					int currentPercentage = int.Parse(label3.Text.Replace("%", ""));
 					int newPercentage = currentPercentage + 10;
 					label3.Text = $"{newPercentage}%";
-				}
+                }
 				else if (e.Delta < 0)
 				{
 					if (int.Parse(label3.Text.Replace("%", "")) <= 10) return;
@@ -84,9 +87,13 @@ namespace Microsoft_Notepad
 			}
 		}
 
+		//
+		// ZOOM IN
+		//
+
 		private void zoomInToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			if (int.Parse(label3.Text.Replace("%", "")) >= 500) return;
+            if (int.Parse(label3.Text.Replace("%", "")) >= 500) return;
 			richTextBox1.ZoomFactor += 0.1F;
 
 			int currentPercentage = int.Parse(label3.Text.Replace("%", ""));
@@ -95,7 +102,11 @@ namespace Microsoft_Notepad
 
 		}
 
-		private void zoomOutToolStripMenuItem_Click(object sender, EventArgs e)
+        //
+        // ZOOM OUT
+        //
+
+        private void zoomOutToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			if (int.Parse(label3.Text.Replace("%", "")) <= 10) return;
 			richTextBox1.ZoomFactor -= 0.1F;
@@ -105,31 +116,38 @@ namespace Microsoft_Notepad
 			label3.Text = $"{newPercentage}%";
 		}
 
-		private void restoreDefaultZoomToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			richTextBox1.ZoomFactor = 1.0F;
-			label3.Text = "100%";
-		}
+        //
+        // RESTORE DEFAULT ZOOM
+        //
 
-		private void statusBarToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			if (gunaLinePanel2.Visible == true)
-			{
-				statusBarToolStripMenuItem.Checked = false;
-				gunaLinePanel2.Hide();
-			}
-			else
-			{
-				statusBarToolStripMenuItem.Checked = true;
-				gunaLinePanel2.Show();
-			}
-		}
+        private void restoreDefaultZoomToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine(richTextBox1.ZoomFactor);
+            richTextBox1.ZoomFactor = 1.0F;
+            label3.Text = "100%";
+        }
+
+        //
+        // STATUS BAR
+        //
+
+        private void statusBarToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            if (statusBarToolStripMenuItem.Checked)
+            {
+                gunaLinePanel2.Show();
+            }
+            else
+            {
+                gunaLinePanel2.Hide();
+            }
+        }
 
 
-		//
-		// HELP
-		//
-		private void viewHelpToolStripMenuItem_Click(object sender, EventArgs e)
+        //
+        // HELP
+        //
+        private void viewHelpToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			string helpUrl = "https://support.microsoft.com/vi-vn/windows/tr%C6%A1%CC%A3-giu%CC%81p-trong-notepad-4d68c388-2ff2-0e7f-b706-35fb2ab88a8c";
 
@@ -402,20 +420,43 @@ namespace Microsoft_Notepad
 			{
 				undoOperations.TxtAreaTextChangeRequired = false;
 			}
-            int lineNumber = richTextBox1.GetLineFromCharIndex(richTextBox1.SelectionStart) + 1;
-            int columnNumber = richTextBox1.SelectionStart - richTextBox1.GetFirstCharIndexOfCurrentLine() + 1;
+            int index = richTextBox1.SelectionStart;
+            int lineNumber = 1;
+            int columnNumber = 1;
+            for (int i = 0; i < index; i++)
+            {
+                if (richTextBox1.Text[i] == '\n')
+                {
+                    lineNumber++;
+                    columnNumber = 1;
+                }
+                else
+                {
+                    columnNumber++;
+                }
+            }
+
             label4.Text = $"Ln {lineNumber}, Col {columnNumber}";
         }
         private void richTextBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            int index = richTextBox1.GetCharIndexFromPosition(e.Location);
-            int lineNumber = richTextBox1.GetLineFromCharIndex(index) + 1;
-            int columnNumber = index - richTextBox1.GetFirstCharIndexOfCurrentLine() + 1;
-            label4.Text = $"Ln {lineNumber}, Col {columnNumber}";
+            int index = richTextBox1.SelectionStart;
+            int lineNumber = 1;
+            int columnNumber = 1;
+            for (int i = 0; i < index; i++)
+            {
+                if (richTextBox1.Text[i] == '\n')
+                {
+                    lineNumber++;
+                    columnNumber = 1;
+                }
+                else
+                {
+                    columnNumber++;
+                }
+            }
+                label4.Text = $"Ln {lineNumber}, Col {columnNumber}";
         }
-
-  
-
 		private void Notepad_FormClosing(object sender, FormClosingEventArgs e)
 		{
 			if (saveToolStripMenuItem.Enabled || saveAsToolStripMenuItem.Enabled)
@@ -660,19 +701,10 @@ namespace Microsoft_Notepad
         //
         //Format
         //
-        private void Notepad_Load(object sender, EventArgs e)
-        {
-			richTextBox1.WordWrap = wordWrapToolStripMenuItem.Checked;
-			statusBarToolStripMenuItem.Enabled = !wordWrapToolStripMenuItem.Checked;
-			if (statusBarToolStripMenuItem.Enabled)
-				statusBarToolStripMenuItem.Checked = true;
-        }
 
         private void wordWrapToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
-			richTextBox1.WordWrap = wordWrapToolStripMenuItem.Checked;
-            statusBarToolStripMenuItem.Enabled = !wordWrapToolStripMenuItem.Checked;
-			statusBarToolStripMenuItem.Checked = true;
+            richTextBox1.WordWrap = !richTextBox1.WordWrap;
         }
 
         private void fontToolStripMenuItem_Click(object sender, EventArgs e)
