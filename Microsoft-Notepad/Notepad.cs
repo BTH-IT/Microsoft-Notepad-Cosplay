@@ -43,7 +43,8 @@ namespace Microsoft_Notepad
 			richTextBox1.HideSelection = false;
 			richTextBox1.SelectionIndent = 5;
 			richTextBox1.BulletIndent = 5;
-        }
+			richTextBox1.TextChanged += richTextBox1_TextChanged;
+		}
 
         private void Notepad_KeyDown(object sender, KeyEventArgs e)
 		{
@@ -390,7 +391,7 @@ namespace Microsoft_Notepad
 		}
 		private void richTextBox1_TextChanged(object sender, EventArgs e)
 		{
-			isFileSaved = false;
+            isFileSaved = false;
 			UpdateView();
 			saveToolStripMenuItem.Enabled = true;
 			saveAsToolStripMenuItem.Enabled = true;
