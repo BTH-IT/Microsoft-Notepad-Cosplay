@@ -1,4 +1,5 @@
-﻿using Microsoft_Notepad.EditFeature;
+﻿using Microsoft.Office.Interop.Word;
+using Microsoft_Notepad.EditFeature;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -158,9 +160,15 @@ namespace Microsoft_Notepad
 
 		private void btnReplaceAll_Click(object sender, EventArgs e)
 		{
-			if(this.matchCaseCb.Checked)
+			if(!this.matchCaseCb.Checked)
 			{
-				Notepad.Instance.richTextBox1.Text = Notepad.Instance.richTextBox1.Text.Replace(findTxt.Text, replaceTxt.Text);
+				string text = Notepad.Instance.richTextBox1.Text;
+				string pattern = findTxt.Text;
+				string repalceTxt = replaceTxt.Text;
+				RegexOptions options = RegexOptions.IgnoreCase;
+				text = Regex.Replace(text, pattern,repalceTxt , options);
+				Console.WriteLine(text);
+				Notepad.Instance.richTextBox1.Text = text;
 			}
 			else
 			{

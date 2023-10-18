@@ -395,7 +395,7 @@ namespace Microsoft_Notepad
 			saveToolStripMenuItem.Enabled = true;
 			saveAsToolStripMenuItem.Enabled = true;
 			if (undoOperations.TxtAreaTextChangeRequired)
-			{
+			{  
 				timer.Start();
 			}
 			else
@@ -562,7 +562,17 @@ namespace Microsoft_Notepad
 
 		private void timeDateToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			richTextBox1.Text = richTextBox1.Text.Insert(richTextBox1.SelectionStart, DateTime.Now.ToString());
+			if(richTextBox1.SelectionLength != 0)
+			{
+				int selectionStart = richTextBox1.SelectionStart;
+				string dateTimeStr = DateTime.Now.ToString();
+				richTextBox1.SelectedText =dateTimeStr;
+				richTextBox1.Select(selectionStart + dateTimeStr.Length,0);
+			}
+			else
+			{
+				richTextBox1.Text = richTextBox1.Text.Insert(richTextBox1.SelectionStart, DateTime.Now.ToString());
+			}
 		}
 
 		private void goToToolStripMenuItem_Click(object sender, EventArgs e)
@@ -714,5 +724,10 @@ namespace Microsoft_Notepad
             colorDlg.ShowDialog();
             richTextBox1.SelectionBackColor = colorDlg.Color;
         }
-    }
+
+		private void richTextBox1_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			undoOperations.TxtAreaTextChangeRequired = true;
+		}
+	}
 }		

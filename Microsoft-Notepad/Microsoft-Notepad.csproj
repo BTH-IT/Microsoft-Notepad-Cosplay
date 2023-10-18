@@ -37,7 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Bunifu_UI_v1.52">
-      <HintPath>..\..\C-Sharp-BookShop\Bunifu_UI_v1.52.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\source\repos\C_Sharp_BookShop\C-Sharp-BookShop\Bunifu_UI_v1.52.dll</HintPath>
     </Reference>
     <Reference Include="Guna.UI">
       <HintPath>..\..\C-Sharp-BookShop\Guna.UI.dll</HintPath>
