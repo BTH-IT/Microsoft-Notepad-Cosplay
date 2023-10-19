@@ -595,7 +595,8 @@ namespace Microsoft_Notepad
 			if (Clipboard.GetDataObject().GetDataPresent(DataFormats.Text))
 			{
 				undoOperations.TxtAreaTextChangeRequired = true;
-				richTextBox1.Paste();
+				richTextBox1.Text += (string)Clipboard.GetData("Text");
+
 			}
 
 		}
