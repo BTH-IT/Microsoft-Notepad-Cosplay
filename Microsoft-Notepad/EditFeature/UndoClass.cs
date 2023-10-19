@@ -10,37 +10,58 @@ namespace Microsoft_Notepad
 	public class UndoClass
 	{
 		private Stack<string> UndoStack;
+		private Stack<string> RedoStack;
 		public UndoClass()
 		{
 			UndoStack = new Stack<string>();
+			RedoStack = new Stack<string>();
 		}
+
 		public void Clear()
 		{
-			UndoStack.Clear();	
+			UndoStack.Clear();
+			RedoStack.Clear();
 		}
+
 		public void AddItem(string item)
 		{
 			UndoStack.Push(item);
 		}
-		public string Undo() 
+
+		public string Undo()
 		{
-			try
-			{
-                string item = UndoStack.Pop();
-                return UndoStack.First();
-            } catch
-			{
-                return "";
-            }
+			string item = UndoStack.Pop();
+			RedoStack.Push(item);
+			return UndoStack.First();
+		}
+
+		public string Redo()
+		{
+			if (RedoStack.Count == 0)
+				return UndoStack.First();
+			string item = RedoStack.Pop();
+			UndoStack.Push(item);
+			return UndoStack.First();
 		}
 
 		public bool CanUndo()
 		{
-			return UndoStack.Count > 1;	
+			return UndoStack.Count > 1;
 		}
+
+		public bool CanRedo()
+		{
+			return RedoStack.Count > 0;
+		}
+
 		public List<string> UndoItems()
 		{
-			return UndoStack.ToList();	
+			return UndoStack.ToList();
+		}
+
+		public List<string> RedoItems()
+		{
+			return RedoStack.ToList();
 		}
 	}
 }

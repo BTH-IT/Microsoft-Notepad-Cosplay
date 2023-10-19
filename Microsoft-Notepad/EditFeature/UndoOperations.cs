@@ -11,15 +11,25 @@ namespace Microsoft_Notepad
 		private UndoClass undoClass;
 		public bool TxtAreaTextChangeRequired { get; set; }	
 
+		public bool toggleRedo { get; set; }	
+
 		public UndoOperations()
 		{
 			TxtAreaTextChangeRequired = true;	
-			undoClass = new UndoClass();	
+			undoClass = new UndoClass();
+			toggleRedo = false;
 		}
 		public string UndoClicked()
 		{
 			TxtAreaTextChangeRequired = false;
+			toggleRedo = true;
 			return undoClass.Undo();
+		}
+		public string RedoClicked()
+		{
+			TxtAreaTextChangeRequired = false;
+			toggleRedo = false;
+			return undoClass.Redo();
 		}
 		public void Add_Undo(string item)
 		{
@@ -28,6 +38,10 @@ namespace Microsoft_Notepad
 		public bool CanUndo()
 		{
 			return undoClass.CanUndo();
+		}
+		public bool CanRedo()
+		{
+			return undoClass.CanRedo();
 		}
 	}
 }

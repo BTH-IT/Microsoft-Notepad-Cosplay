@@ -2,6 +2,7 @@
 using System;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Microsoft_Notepad
@@ -578,6 +579,7 @@ namespace Microsoft_Notepad
 
 		private void cutToolStripMenuItem_Click(object sender, EventArgs e)
 		{
+			undoOperations.TxtAreaTextChangeRequired = true;
 			richTextBox1.Cut();
 			pasteToolStripMenuItem.Enabled = true;
 		}
@@ -592,7 +594,9 @@ namespace Microsoft_Notepad
 		{
 			if (Clipboard.GetDataObject().GetDataPresent(DataFormats.Text))
 			{
-				richTextBox1.Paste();
+				undoOperations.TxtAreaTextChangeRequired = true;
+				richTextBox1.Text += (string)Clipboard.GetData("Text");
+
 			}
 
 		}
@@ -632,7 +636,57 @@ namespace Microsoft_Notepad
 
 		private void undoToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			richTextBox1.Text = undoOperations.UndoClicked();
+			bool isValid = false;
+			string replaceTxt="";
+			string oldText = richTextBox1.Text;
+			if (!undoOperations.toggleRedo)
+			{
+				if (undoOperations.CanUndo())
+				{
+					replaceTxt = undoOperations.UndoClicked();
+					isValid = true;
+				}
+			}
+			else
+			{
+				if(undoOperations.CanRedo())
+				{
+					replaceTxt = undoOperations.RedoClicked();
+					isValid = true;
+				}
+			}
+			if(isValid)
+			{
+				
+				int minLength = Math.Min(replaceTxt.Length, oldText.Length);
+				int startIndex =-1;
+				for (int i = 0; i < minLength; i++)
+				{
+					if (replaceTxt[i] != oldText[i])
+					{
+						startIndex = i;
+						break;
+					}
+				}
+				if (startIndex == -1 && replaceTxt.Length != oldText.Length)
+				{
+					startIndex = minLength;
+				}
+				int len = replaceTxt.Length - oldText.Length;
+				richTextBox1.Text = replaceTxt;
+				if (startIndex != -1)
+				{
+					if (len > 0)
+					{
+						richTextBox1.Select(startIndex, len);
+					}
+					else
+					{
+						richTextBox1.SelectionStart = startIndex;
+					}
+				}
+			}	
+			
 		}
 
 		private void findToolStripMenuItem_Click(object sender, EventArgs e)
@@ -761,6 +815,16 @@ namespace Microsoft_Notepad
 		private void richTextBox1_KeyPress(object sender, KeyPressEventArgs e)
 		{
 			undoOperations.TxtAreaTextChangeRequired = true;
+		}
+
+		private void contextMenuStrip1_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			searchToolStripMenuItem.Enabled = richTextBox1.SelectedText.Length > 0;
+			cUTToolStripMenuItem1.Enabled = richTextBox1.SelectedText.Length > 0 ? true : false;
+			copyToolStripMenuItem1.Enabled = richTextBox1.SelectedText.Length > 0 ? true : false;
+			patseToolStripMenuItem.Enabled = Clipboard.GetDataObject().GetDataPresent(DataFormats.Text);
+			deleteToolStripMenuItem1.Enabled = richTextBox1.SelectedText.Length > 0 ? true : false;
+			undoToolStripMenuItem1.Enabled = undoOperations.CanUndo() ? true : false;
 		}
 	}
 }		
