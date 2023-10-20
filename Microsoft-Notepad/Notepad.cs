@@ -508,32 +508,38 @@ namespace Microsoft_Notepad
 
 		private void newToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			OpenFileDialog openFile = new OpenFileDialog();
-			openFile.Filter = "Text(*.txt)|*.txt";
-			openFile.InitialDirectory = "D:";
-			openFile.Title = "Open File";
-			string content;
-			if (openFile.ShowDialog() == DialogResult.OK)
+			try
 			{
-				this.richTextBox1.TextChanged -= richTextBox1_TextChanged;
-				Stream stream = File.Open(openFile.FileName, FileMode.Open, FileAccess.ReadWrite);
-				using (StreamReader streamReader = new StreamReader(stream))
-				{
-					content = streamReader.ReadToEnd();
-				}
-				UpdateFileStatus();
-				this.richTextBox1.TextChanged += richTextBox1_TextChanged;
-				UpdateView();
-			}
+                OpenFileDialog openFile = new OpenFileDialog();
+                openFile.Filter = "Text(*.txt)|*.txt";
+                openFile.InitialDirectory = "D:";
+                openFile.Title = "Open File";
+                string content;
+                if (openFile.ShowDialog() == DialogResult.OK)
+                {
+                    this.richTextBox1.TextChanged -= richTextBox1_TextChanged;
+                    Stream stream = File.Open(openFile.FileName, FileMode.Open, FileAccess.ReadWrite);
+                    using (StreamReader streamReader = new StreamReader(stream))
+                    {
+                        content = streamReader.ReadToEnd();
+                    }
+                    UpdateFileStatus();
+                    this.richTextBox1.TextChanged += richTextBox1_TextChanged;
+                    UpdateView();
+                }
 
-			this.filename = openFile.FileName;
+                this.filename = openFile.FileName;
 
-			Stream stream2 = File.Open(openFile.FileName, FileMode.Open, FileAccess.ReadWrite);
-			using (StreamReader streamReader = new StreamReader(stream2))
+                Stream stream2 = File.Open(openFile.FileName, FileMode.Open, FileAccess.ReadWrite);
+                using (StreamReader streamReader = new StreamReader(stream2))
+                {
+                    content = streamReader.ReadToEnd();
+                }
+                UpdateFileStatus();
+            } catch
 			{
-				content = streamReader.ReadToEnd();
+
 			}
-			UpdateFileStatus();
 		}
 
 		private void UpdateFileStatus()
@@ -826,5 +832,5 @@ namespace Microsoft_Notepad
 			deleteToolStripMenuItem1.Enabled = richTextBox1.SelectedText.Length > 0 ? true : false;
 			undoToolStripMenuItem1.Enabled = undoOperations.CanUndo() ? true : false;
 		}
-	}
+    }
 }		
